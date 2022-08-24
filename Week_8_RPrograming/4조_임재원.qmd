@@ -1,0 +1,98 @@
+---
+title: "회귀분석을 이용한 중고차 가격 예측"
+author: "임재원"
+format: html
+editor: visual
+---
+
+# 1. Dataset 로딩
+
+```{r}
+carDF <- read.csv('used_car_data.csv')
+head(carDF)
+```
+
+# 2. 데이터 전처리
+
+## 2-1 불필요 컬럼 제거
+- car_name, brand, model, min_cost, max_cost는 불필요하다 판단, 제거하였음.
+```{r}
+str(carDF)
+carDF <- carDF[, -c(1, 2, 3, 4, 5, 6)]
+head(carDF)
+```
+
+## 2-2 자료형 확인 및 변경
+- chr -> factor 자료형으로 변경
+
+```{r}
+carDF[sapply(carDF, is.character)] <- lapply(carDF[sapply(carDF, is.character)], as.factor)
+```
+
+## 2-3 결측치 확인 및 처리방안 구상
+- 결측치가 관측되지 않았기 때문에 결측치 처리는 생략하겠음.
+
+```{r}
+str(carDF)
+library(extrafont)
+library(naniar)
+library(VIM)
+library(tidyverse)
+naniar::vis_miss(carDF) + theme()
+```
+
+## 2-4 종속변수(selling_price) 확인
+- Target변수인 selling_price가 왼쪽으로 너무 치우쳐져 있기 때문에 log변환을 통해 정규분포를 따르도록 변경.
+
+```{r}
+hist(carDF$selling_price)
+hist(log(carDF$selling_price))
+qqnorm(log(carDF$selling_price))
+```
+
+# 3. 분석 데이터 확인
+## 
+- 
+
+```{r}
+str(carDF)
+carDF2 <- subset(carDF, km_driven < 1000000)
+model <- lm(log(selling_price) ~ ., data = carDF)
+summary(model)
+
+step(lm(log(selling_price) ~ 1, carDF), direction = 'backward')
+summary(lm(log(selling_price) ~ max_power, data = carDF))
+
+# ============================================================
+
+plot(carDF$max_power, log(carDF$selling_price))
+model <- lm(log(carDF$selling_price) ~ carDF$max_power)
+abline(model, col = 'tomato', lwd = 3)
+
+# ============================================================
+
+plot(carDF2$km_driven, log(carDF2$selling_price))
+model <- lm(log(carDF2$selling_price) ~ carDF2$km_driven)
+abline(model, col = 'tomato', lwd = 3)
+
+# ============================================================
+
+plot(carDF$mileage, log(carDF$selling_price))
+model <- lm(log(carDF$selling_price) ~ carDF$mileage)
+abline(model, col = 'tomato', lwd = 3)
+
+# ============================================================
+
+plot(carDF$engine, log(carDF$selling_price))
+model <- lm(log(carDF$selling_price) ~ carDF$engine)
+abline(model, col = 'tomato', lwd = 3)
+
+```
+
+
+
+
+ggplot(carDF) +
+    geom_point(aes(x = km_driven, y = log(selling_price))) +
+    geom_smooth(aes(x = km_driven, y = log(selling_price))) + 
+    theme(text = element_text(size = 15, face = "bold"))

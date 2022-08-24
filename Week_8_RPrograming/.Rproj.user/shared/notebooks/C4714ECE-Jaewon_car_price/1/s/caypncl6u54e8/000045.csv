@@ -1,0 +1,12 @@
+"0","model <- lm(sell_price ~ brand + type + displacement + transmission_type + mielage + torque, data = carDF)
+pre <- predict(model, test_modedl = carDF, interval = ""prediction"")
+"
+"2","경고: 현재 데이터를 이용한 예측은 _future_response을 의미합니다
+"
+"0","pre <- as.data.frame(pre)"
+"0","pre <- cbind(pre, carDF$sell_price)"
+"0","Success <- NA"
+"0","pre <- cbind(pre, Success)"
+"0","pre$Success[pre$'carDF$sell_price' >= pre$lwr & pre$'carDF$sell_price' <= pre$upr] <- T"
+"0","pre$Success[is.na(pre$Success)] <- F"
+"0","head(pre)"

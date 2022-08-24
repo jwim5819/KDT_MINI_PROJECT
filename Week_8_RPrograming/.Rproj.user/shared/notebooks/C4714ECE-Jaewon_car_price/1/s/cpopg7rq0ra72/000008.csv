@@ -1,0 +1,2 @@
+"0","pairs(~ brand + type + displacement + wt + transmission_type + mielage + torque, data = carDF, pch = 21, bg = c(""red"", ""blue"", ""green""))"
+"0",""

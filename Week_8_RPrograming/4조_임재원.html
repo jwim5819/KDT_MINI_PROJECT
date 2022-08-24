@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="임재원">
+
+<title>회귀분석을 이용한 중고차 가격 예측</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="4조_임재원_files/libs/clipboard/clipboard.min.js"></script>
+<script src="4조_임재원_files/libs/quarto-html/quarto.js"></script>
+<script src="4조_임재원_files/libs/quarto-html/popper.min.js"></script>
+<script src="4조_임재원_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="4조_임재원_files/libs/quarto-html/anchor.min.js"></script>
+<link href="4조_임재원_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="4조_임재원_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="4조_임재원_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="4조_임재원_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="4조_임재원_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">회귀분석을 이용한 중고차 가격 예측</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>임재원 </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="dataset-로딩" class="level1">
+<h1>1. Dataset 로딩</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>carDF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'used_car_data.csv'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  X       car_name   brand    model min_cost_price max_cost_price vehicle_age
+1 0    Maruti Alto  Maruti     Alto       357003.9       465401.5           9
+2 1  Hyundai Grand Hyundai    Grand       711000.0       748000.0           5
+3 2    Hyundai i20 Hyundai      i20       854082.9      1307925.6          11
+4 3    Maruti Alto  Maruti     Alto       357003.9       465401.5           9
+5 4  Ford Ecosport    Ford Ecosport      1014000.0      1379000.0           6
+6 5 Maruti Wagon R  Maruti  Wagon R       516000.0       694000.0           8
+  km_driven seller_type fuel_type transmission_type mileage engine max_power
+1    120000  Individual    Petrol            Manual   19.70    796     46.30
+2     20000  Individual    Petrol            Manual   18.90   1197     82.00
+3     60000  Individual    Petrol            Manual   17.00   1197     80.00
+4     37000  Individual    Petrol            Manual   20.92    998     67.10
+5     30000      Dealer    Diesel            Manual   22.77   1498     98.59
+6     35000  Individual    Petrol            Manual   18.90    998     67.10
+  seats selling_price
+1     5        120000
+2     5        550000
+3     5        215000
+4     5        226000
+5     5        570000
+6     5        350000</code></pre>
+</div>
+</div>
+</section>
+<section id="데이터-전처리" class="level1">
+<h1>2. 데이터 전처리</h1>
+<section id="불필요-컬럼-제거" class="level2">
+<h2 class="anchored" data-anchor-id="불필요-컬럼-제거">2-1 불필요 컬럼 제거</h2>
+<ul>
+<li>car_name, brand, model, min_cost, max_cost는 불필요하다 판단, 제거하였음.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   15411 obs. of  16 variables:
+ $ X                : int  0 1 2 3 4 5 6 7 8 12 ...
+ $ car_name         : chr  "Maruti Alto" "Hyundai Grand" "Hyundai i20" "Maruti Alto" ...
+ $ brand            : chr  "Maruti" "Hyundai" "Hyundai" "Maruti" ...
+ $ model            : chr  "Alto" "Grand" "i20" "Alto" ...
+ $ min_cost_price   : num  357004 711000 854083 357004 1014000 ...
+ $ max_cost_price   : num  465402 748000 1307926 465402 1379000 ...
+ $ vehicle_age      : int  9 5 11 9 6 8 8 3 2 4 ...
+ $ km_driven        : int  120000 20000 60000 37000 30000 35000 40000 17512 20000 28321 ...
+ $ seller_type      : chr  "Individual" "Individual" "Individual" "Individual" ...
+ $ fuel_type        : chr  "Petrol" "Petrol" "Petrol" "Petrol" ...
+ $ transmission_type: chr  "Manual" "Manual" "Manual" "Manual" ...
+ $ mileage          : num  19.7 18.9 17 20.9 22.8 ...
+ $ engine           : int  796 1197 1197 998 1498 998 1197 998 998 1197 ...
+ $ max_power        : num  46.3 82 80 67.1 98.6 ...
+ $ seats            : int  5 5 5 5 5 5 5 5 5 5 ...
+ $ selling_price    : int  120000 550000 215000 226000 570000 350000 315000 410000 1050000 511000 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>carDF <span class="ot">&lt;-</span> carDF[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  vehicle_age km_driven seller_type fuel_type transmission_type mileage engine
+1           9    120000  Individual    Petrol            Manual   19.70    796
+2           5     20000  Individual    Petrol            Manual   18.90   1197
+3          11     60000  Individual    Petrol            Manual   17.00   1197
+4           9     37000  Individual    Petrol            Manual   20.92    998
+5           6     30000      Dealer    Diesel            Manual   22.77   1498
+6           8     35000  Individual    Petrol            Manual   18.90    998
+  max_power seats selling_price
+1     46.30     5        120000
+2     82.00     5        550000
+3     80.00     5        215000
+4     67.10     5        226000
+5     98.59     5        570000
+6     67.10     5        350000</code></pre>
+</div>
+</div>
+</section>
+<section id="자료형-확인-및-변경" class="level2">
+<h2 class="anchored" data-anchor-id="자료형-확인-및-변경">2-2 자료형 확인 및 변경</h2>
+<ul>
+<li>chr -&gt; factor 자료형으로 변경</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>carDF[<span class="fu">sapply</span>(carDF, is.character)] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(carDF[<span class="fu">sapply</span>(carDF, is.character)], as.factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="결측치-확인-및-처리방안-구상" class="level2">
+<h2 class="anchored" data-anchor-id="결측치-확인-및-처리방안-구상">2-3 결측치 확인 및 처리방안 구상</h2>
+<ul>
+<li>결측치가 관측되지 않았기 때문에 결측치 처리는 생략하겠음.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   15411 obs. of  10 variables:
+ $ vehicle_age      : int  9 5 11 9 6 8 8 3 2 4 ...
+ $ km_driven        : int  120000 20000 60000 37000 30000 35000 40000 17512 20000 28321 ...
+ $ seller_type      : Factor w/ 3 levels "Dealer","Individual",..: 2 2 2 2 1 2 1 1 2 1 ...
+ $ fuel_type        : Factor w/ 5 levels "CNG","Diesel",..: 5 5 5 5 2 5 5 5 5 5 ...
+ $ transmission_type: Factor w/ 2 levels "Automatic","Manual": 2 2 2 2 2 2 2 2 1 2 ...
+ $ mileage          : num  19.7 18.9 17 20.9 22.8 ...
+ $ engine           : int  796 1197 1197 998 1498 998 1197 998 998 1197 ...
+ $ max_power        : num  46.3 82 80 67.1 98.6 ...
+ $ seats            : int  5 5 5 5 5 5 5 5 5 5 ...
+ $ selling_price    : int  120000 550000 215000 226000 570000 350000 315000 410000 1050000 511000 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registering fonts with R</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: colorspace</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: grid</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>VIM is ready to use.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Suggestions and bug-reports can be submitted at: https://github.com/statistikat/VIM/issues</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'VIM'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:datasets':
+
+    sleep</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages
+───────────────────────────────────────
+tidyverse 1.3.2 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+✔ tibble  3.1.8     ✔ dplyr   1.0.9
+✔ tidyr   1.2.0     ✔ stringr 1.4.0
+✔ readr   2.1.2     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">vis_miss</span>(carDF) <span class="sc">+</span> <span class="fu">theme</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `gather_()` was deprecated in tidyr 1.2.0.
+Please use `gather()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="4조_임재원_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="종속변수selling_price-확인" class="level2">
+<h2 class="anchored" data-anchor-id="종속변수selling_price-확인">2-4 종속변수(selling_price) 확인</h2>
+<ul>
+<li>Target변수인 selling_price가 왼쪽으로 너무 치우쳐져 있기 때문에 log변환을 통해 정규분포를 따르도록 변경.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(carDF<span class="sc">$</span>selling_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="4조_임재원_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(carDF<span class="sc">$</span>selling_price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="4조_임재원_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">log</span>(carDF<span class="sc">$</span>selling_price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="4조_임재원_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="분석-데이터-확인" class="level1">
+<h1>3. 분석 데이터 확인</h1>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">##</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="fu">log</span>(selling_price) <span class="sc">~</span> ., <span class="at">data =</span> carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log(selling_price) ~ ., data = carDF)
+
+Coefficients:
+                (Intercept)                  vehicle_age  
+                  1.332e+01                   -1.160e-01  
+                  km_driven        seller_typeIndividual  
+                 -2.082e-07                   -9.023e-02  
+seller_typeTrustmark Dealer              fuel_typeDiesel  
+                 -3.376e-02                    1.691e-01  
+          fuel_typeElectric                 fuel_typeLPG  
+                  4.012e-01                   -7.904e-02  
+            fuel_typePetrol      transmission_typeManual  
+                 -1.047e-01                   -1.855e-01  
+                    mileage                       engine  
+                 -1.330e-02                    1.172e-04  
+                  max_power                        seats  
+                  8.223e-03                    1.576e-02  </code></pre>
+</div>
+</div>
+<p>ggplot(carDF) + geom_point(aes(x = km_driven, y = log(selling_price))) + geom_smooth(aes(x = km_driven, y = log(selling_price))) + theme(text = element_text(size = 15, face = “bold”))</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

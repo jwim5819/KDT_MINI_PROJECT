@@ -1,0 +1,6 @@
+"0","sqrt(sum(sapply(carDF[, 1] - predict(model, carDF[, -1]), FUN = function(x) {x^2})) / (dim(carDF)[1] - 1))
+"
+"1","[1]"
+"1"," 507.9306"
+"1","
+"

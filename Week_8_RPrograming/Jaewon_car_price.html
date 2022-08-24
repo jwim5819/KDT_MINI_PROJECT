@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lim Jaewon">
+
+<title>Jaewon_car_price</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="Jaewon_car_price_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Jaewon_car_price_files/libs/quarto-html/quarto.js"></script>
+<script src="Jaewon_car_price_files/libs/quarto-html/popper.min.js"></script>
+<script src="Jaewon_car_price_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Jaewon_car_price_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Jaewon_car_price_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Jaewon_car_price_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Jaewon_car_price_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Jaewon_car_price_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Jaewon_car_price_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Jaewon_car_price</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lim Jaewon </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="목적-유의한-독립변수들을-찾아-다중회귀분석을-사용하여-자동차의-값을-예측해본다." class="level3">
+<h3 class="anchored" data-anchor-id="목적-유의한-독립변수들을-찾아-다중회귀분석을-사용하여-자동차의-값을-예측해본다.">목적 : 유의한 독립변수들을 찾아 <span style="background-color: #fff5b1">다중회귀분석</span>을 사용하여 자동차의 값을 예측해본다.</h3>
+</section>
+<section id="목차" class="level3">
+<h3 class="anchored" data-anchor-id="목차">목차</h3>
+<ul>
+<li><ol type="1">
+<li>Dataset, library 로딩</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>데이터 전처리</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>데이터 통계분석</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>회귀모형을 사용한 예측</li>
+</ol></li>
+<li><ol start="5" type="1">
+<li>아쉬웠던 점</li>
+</ol></li>
+</ul>
+</section>
+<section id="dataset-library-로딩" class="level1">
+<h1>1. Dataset, library 로딩</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VIM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: colorspace</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: grid</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>VIM is ready to use.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Suggestions and bug-reports can be submitted at: https://github.com/statistikat/VIM/issues</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'VIM'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:datasets':
+
+    sleep</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: carData</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'car'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:psych':
+
+    logit</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'ggplot2'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:psych':
+
+    %+%, alpha</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages
+───────────────────────────────────────
+tidyverse 1.3.2 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ tibble  3.1.8     ✔ dplyr   1.0.9
+✔ tidyr   1.2.0     ✔ stringr 1.4.0
+✔ readr   2.1.2     ✔ forcats 0.5.1
+✔ purrr   0.3.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::%+%()   masks psych::%+%()
+✖ ggplot2::alpha() masks psych::alpha()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ dplyr::recode()  masks car::recode()
+✖ purrr::some()    masks car::some()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>carDF <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'car_price.csv'</span>, <span class="at">fileEncoding =</span> <span class="st">'cp949'</span>, <span class="at">encoding =</span> <span class="st">'cp949'</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  sell_price brand year type mielage  hp torque fuel_type LPG hybrid
+1       8620  기아 2015 대형     7.6 425   52.0    가솔린   0      0
+2      11150  현대 2015 대형     8.1 416   52.0    가솔린   0      0
+3      14570  현대 2015 대형     7.4 416   52.0    가솔린   0      0
+4      10687  쌍용 2015 대형     7.5 306   45.0    가솔린   0      0
+5       9324  쌍용 2015 대형     7.6 306   45.0    가솔린   0      0
+6       5680  기아 2015 대형     9.3 334   40.3    가솔린   0      0
+  displacement   wt transmission_type
+1           NA 2105              자동
+2         5038 2065              자동
+3         5038 2145              자동
+4         4966 2070              자동
+5         4966 1960              자동
+6         3778 1940              자동</code></pre>
+</div>
+</div>
+</section>
+<section id="데이터-전처리" class="level1">
+<h1>2. 데이터 전처리</h1>
+<section id="자료형-확인-및-변경" class="level2">
+<h2 class="anchored" data-anchor-id="자료형-확인-및-변경">2-1 자료형 확인 및 변경</h2>
+<ul>
+<li>chr -&gt; factor 자료형으로 변경</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>carDF[<span class="fu">sapply</span>(carDF, is.character)] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(carDF[<span class="fu">sapply</span>(carDF, is.character)], as.factor)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>carDF<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(carDF<span class="sc">$</span>year)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>carDF<span class="sc">$</span>LPG <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(carDF<span class="sc">$</span>LPG)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>carDF<span class="sc">$</span>hybrid <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(carDF<span class="sc">$</span>hybrid)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   409 obs. of  13 variables:
+ $ sell_price       : int  8620 11150 14570 10687 9324 5680 6910 5463 5710 9254 ...
+ $ brand            : Factor w/ 6 levels "기아","대우",..: 1 6 6 5 5 1 6 6 6 5 ...
+ $ year             : Factor w/ 6 levels "2010","2011",..: 6 6 6 6 6 6 6 6 6 6 ...
+ $ type             : Factor w/ 5 levels "경형","대형",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ mielage          : num  7.6 8.1 7.4 7.5 7.6 9.3 8.9 9 8.5 8 ...
+ $ hp               : int  425 416 416 306 306 334 334 315 315 250 ...
+ $ torque           : num  52 52 52 45 45 40.3 40.3 40.5 40.5 35 ...
+ $ fuel_type        : Factor w/ 3 levels "LPG","가솔린",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ LPG              : Factor w/ 2 levels "0","1": 1 1 1 1 1 1 1 1 1 1 ...
+ $ hybrid           : Factor w/ 2 levels "0","1": 1 1 1 1 1 1 1 1 1 1 ...
+ $ displacement     : int  NA 5038 5038 4966 4966 3778 3778 3778 3778 3598 ...
+ $ wt               : int  2105 2065 2145 2070 1960 1940 1915 1930 2000 2070 ...
+ $ transmission_type: Factor w/ 2 levels "수동","자동": 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="결측치-확인-및-처리방안-구상" class="level2">
+<h2 class="anchored" data-anchor-id="결측치-확인-및-처리방안-구상">2-2 결측치 확인 및 처리방안 구상</h2>
+<ul>
+<li>3군데의 열에서 결측치가 관측되었고 결측치의 수가 얼마되지 않기에 <span style="background-color: #fff5b1">제거</span>해주었음.</li>
+<li>409개 행 -&gt; 407개 행</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 409  13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>carDF <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(carDF)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 407  13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="종속변수selling_price-확인" class="level2">
+<h2 class="anchored" data-anchor-id="종속변수selling_price-확인">2-3 종속변수(selling_price) 확인</h2>
+<ul>
+<li><span style="background-color: #fff5b1">Target변수인 sell_price</span>가 왼쪽으로 너무 치우쳐져 있음.</li>
+<li>회귀분석에 있어서 종속변수의 경우 정규분포를 따르는 것이 좋기때문에 log화 해주었음.</li>
+<li>샤피로 테스트 결과 확인.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(carDF<span class="sc">$</span>sell_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(carDF<span class="sc">$</span>sell_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(carDF<span class="sc">$</span>sell_price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">log</span>(carDF<span class="sc">$</span>sell_price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">log</span>(carDF<span class="sc">$</span>sell_price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  log(carDF$sell_price)
+W = 0.97123, p-value = 3.431e-07</code></pre>
+</div>
+</div>
+</section>
+<section id="데이터셋에-대한-eda분석" class="level2">
+<h2 class="anchored" data-anchor-id="데이터셋에-대한-eda분석">2-4 데이터셋에 대한 EDA분석</h2>
+<ul>
+<li>sell_price에서 이상치라고는 할 수 없지만 회귀모형 예측률을 높여주기 위해 9이상의 값들 제거.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">log</span>(carDF<span class="sc">$</span>sell_price), <span class="at">main =</span> <span class="st">'sell_price'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(carDF<span class="sc">$</span>mielage, <span class="at">main =</span> <span class="st">'mielage'</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(carDF<span class="sc">$</span>hp, <span class="at">main =</span> <span class="st">'hp'</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(carDF<span class="sc">$</span>torque, <span class="at">main =</span> <span class="st">'torque'</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(carDF<span class="sc">$</span>displacement, <span class="at">main =</span> <span class="st">'displacement'</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(carDF<span class="sc">$</span>wt, <span class="at">main =</span> <span class="st">'wt'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>carDF <span class="ot">&lt;-</span> carDF[<span class="fu">log</span>(carDF<span class="sc">$</span>sell_price) <span class="sc">&lt;</span> <span class="dv">9</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="이상치-제거후-sell_prcie확인" class="level3">
+<h3 class="anchored" data-anchor-id="이상치-제거후-sell_prcie확인">2-4-1 이상치 제거후 sell_prcie확인</h3>
+<ul>
+<li>이상치를 제거한 후 정규분포를 잘 따르는 것으로 확인되었다.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(carDF<span class="sc">$</span>sell_price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">log</span>(carDF<span class="sc">$</span>sell_price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="범주형-데이터-확인" class="level3">
+<h3 class="anchored" data-anchor-id="범주형-데이터-확인">2-4-2 범주형 데이터 확인</h3>
+<ul>
+<li>LPG, hybrid열의 경우 한쪽으로 매우 많이 값이 치우쳐 져있기 때문에, <span style="background-color: #fff5b1">유의한 변수가 아니라고 판단</span>하여 회귀모델 생성에 사용하지 않을것.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> carDF, <span class="fu">aes</span>(brand)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>brand)) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> carDF, <span class="fu">aes</span>(year)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>year)) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> carDF, <span class="fu">aes</span>(type)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>type)) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>g4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> carDF, <span class="fu">aes</span>(fuel_type)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>fuel_type)) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>g5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> carDF, <span class="fu">aes</span>(LPG)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>LPG)) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>g6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> carDF, <span class="fu">aes</span>(hybrid)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>hybrid)) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>g7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> carDF, <span class="fu">aes</span>(transmission_type)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>transmission_type)) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>(g1 <span class="sc">+</span> g2) <span class="sc">/</span> (g3 <span class="sc">+</span> g4) <span class="sc">/</span> (g5 <span class="sc">+</span> g6 <span class="sc">+</span> g7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="데이터-통계분석" class="level1">
+<h1>3. 데이터 통계분석</h1>
+<section id="종속변수sell_price에-대한-전체변수-회귀모형-fitting" class="level2">
+<h2 class="anchored" data-anchor-id="종속변수sell_price에-대한-전체변수-회귀모형-fitting">3-1 종속변수(sell_price)에 대한 전체변수 회귀모형 fitting</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sell_price<span class="sc">~</span>., <span class="at">data =</span> carDF)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = sell_price ~ ., data = carDF)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1471.57  -179.92    -8.45   184.73  1912.37 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           -3128.8516   487.6597  -6.416 4.20e-10 ***
+brand대우               646.2011   134.9102   4.790 2.40e-06 ***
+brand삼성               315.1426   139.0775   2.266 0.024021 *  
+brand쉐보레              96.9397    61.5448   1.575 0.116070    
+brand쌍용               658.5089    99.5291   6.616 1.27e-10 ***
+brand현대               -67.9154    60.0569  -1.131 0.258836    
+year2011                -48.3083   161.5764  -0.299 0.765119    
+year2012                110.1205   156.4167   0.704 0.481855    
+year2013                218.7741   158.2379   1.383 0.167617    
+year2014                217.5348   156.1018   1.394 0.164276    
+year2015                370.1917   153.7981   2.407 0.016564 *  
+type대형              -1050.7043   199.4688  -5.268 2.33e-07 ***
+type소형               -503.2908    83.7398  -6.010 4.37e-09 ***
+type준중형             -841.1806   117.8001  -7.141 4.81e-12 ***
+type중형               -711.2939   157.0391  -4.529 7.95e-06 ***
+mielage                  65.8193    16.8325   3.910 0.000109 ***
+hp                        7.3713     1.7933   4.111 4.85e-05 ***
+torque                   14.7397     8.5989   1.714 0.087323 .  
+fuel_type가솔린         208.3843   220.7187   0.944 0.345714    
+fuel_type디젤          -327.9175   218.2619  -1.502 0.133830    
+LPG1                    268.5988   218.0947   1.232 0.218878    
+hybrid1                 555.7348   196.3454   2.830 0.004898 ** 
+displacement              0.5902     0.1265   4.666 4.27e-06 ***
+wt                        1.3226     0.2276   5.810 1.33e-08 ***
+transmission_type자동   262.1325    50.6145   5.179 3.64e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 400.2 on 377 degrees of freedom
+Multiple R-squared:  0.8671,    Adjusted R-squared:  0.8587 
+F-statistic: 102.5 on 24 and 377 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="변수선택forward-backward-stepwise" class="level2">
+<h2 class="anchored" data-anchor-id="변수선택forward-backward-stepwise">3-2 변수선택(‘forward’, ‘backward’, ‘stepwise’)</h2>
+<ul>
+<li><span style="background-color: #fff5b1">유의하지 않은 변수가 많이 관측</span>된다.</li>
+<li>따라서 3가지의 변수선택법을 사용하여 변수를 필터링 해본다.</li>
+</ul>
+<section id="전진선택법" class="level3">
+<h3 class="anchored" data-anchor-id="전진선택법">3-2-1 전진선택법</h3>
+<ul>
+<li>최종 선택된 유의한 변수 : brand, type, displacement, wt, transmission_type, mielage, torque / 7개</li>
+<li>Adjusted R-squared: 0.8368</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>model_forward <span class="ot">&lt;-</span> <span class="fu">lm</span>(sell_price <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> carDF)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>model_forward <span class="ot">&lt;-</span> <span class="fu">step</span>(model_forward, <span class="at">scope=</span><span class="fu">list</span>(<span class="at">lower=</span>model_forward, <span class="at">upper=</span>model), <span class="at">direction =</span> <span class="st">"forward"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=5605.17
+sell_price ~ 1
+
+                    Df Sum of Sq       RSS    AIC
++ hp                 1 334261102 120226172 5072.6
++ displacement       1 279740137 174747138 5222.9
++ wt                 1 252937625 201549649 5280.3
++ torque             1 230299241 224188033 5323.1
++ type               4 228333215 226154060 5332.6
++ mielage            1  94876400 359610874 5513.0
++ year               5  79834476 374652798 5537.5
++ transmission_type  1  61792511 392694764 5548.4
++ brand              5  59443859 395043415 5558.8
++ fuel_type          2  40812206 413675068 5571.3
++ LPG                1  14373869 440113405 5594.2
++ hybrid             1  10490542 443996733 5597.8
+&lt;none&gt;                           454487274 5605.2
+
+Step:  AIC=5072.59
+sell_price ~ hp
+
+                    Df Sum of Sq       RSS    AIC
++ brand              5  22754010  97472163 4998.2
++ type               4  16100024 104126148 5022.8
++ wt                 1   8924061 111302111 5043.6
++ hybrid             1   7305947 112920226 5049.4
++ transmission_type  1   5372950 114853223 5056.2
++ displacement       1   2057952 118168220 5067.6
++ torque             1   1536034 118690138 5069.4
++ year               5   3486344 116739829 5070.8
++ mielage            1    607410 119618762 5072.6
+&lt;none&gt;                           120226172 5072.6
++ LPG                1    403914 119822258 5073.2
++ fuel_type          2    621898 119604274 5074.5
+
+Step:  AIC=4998.25
+sell_price ~ hp + brand
+
+                    Df Sum of Sq      RSS    AIC
++ type               4  14585843 82886320 4941.1
++ hybrid             1   7001216 90470947 4970.3
++ transmission_type  1   4866368 92605795 4979.7
++ wt                 1   4544764 92927398 4981.1
++ displacement       1   1287211 96184951 4994.9
++ torque             1    620924 96851239 4997.7
+&lt;none&gt;                           97472163 4998.2
++ LPG                1     36198 97435964 5000.1
++ mielage            1     10937 97461225 5000.2
++ year               5   1661452 95810711 5001.3
++ fuel_type          2     32827 97439336 5002.1
+
+Step:  AIC=4941.08
+sell_price ~ hp + brand + type
+
+                    Df Sum of Sq      RSS    AIC
++ hybrid             1   6617364 76268955 4909.6
++ transmission_type  1   4623254 78263066 4920.0
++ wt                 1   4499681 78386639 4920.6
+&lt;none&gt;                           82886320 4941.1
++ displacement       1    359336 82526984 4941.3
++ torque             1    323190 82563130 4941.5
++ mielage            1    188171 82698149 4942.2
++ year               5   1654049 81232270 4943.0
++ LPG                1      6593 82879726 4943.1
++ fuel_type          2     33904 82852416 4944.9
+
+Step:  AIC=4909.64
+sell_price ~ hp + brand + type + hybrid
+
+                    Df Sum of Sq      RSS    AIC
++ wt                 1   5704931 70564024 4880.4
++ transmission_type  1   3358090 72910865 4893.5
++ torque             1   1102918 75166037 4905.8
++ displacement       1    414770 75854185 4909.4
+&lt;none&gt;                           76268955 4909.6
++ year               5   1826932 74442023 4909.9
++ mielage            1    113184 76155771 4911.0
++ LPG                1       292 76268664 4911.6
++ fuel_type          2    305178 75963778 4912.0
+
+Step:  AIC=4880.38
+sell_price ~ hp + brand + type + hybrid + wt
+
+                    Df Sum of Sq      RSS    AIC
++ transmission_type  1   2970618 67593406 4865.1
++ fuel_type          2   1559150 69004874 4875.4
++ displacement       1    563421 70000603 4879.2
++ torque             1    369885 70194139 4880.3
+&lt;none&gt;                           70564024 4880.4
++ year               5   1680248 68883776 4880.7
++ LPG                1    109246 70454778 4881.8
++ mielage            1      2591 70561434 4882.4
+
+Step:  AIC=4865.09
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type
+
+               Df Sum of Sq      RSS    AIC
++ displacement  1    901656 66691749 4861.7
++ fuel_type     2   1014962 66578444 4863.0
+&lt;none&gt;                      67593406 4865.1
++ torque        1    232022 67361384 4865.7
++ mielage       1    159226 67434180 4866.1
++ LPG           1     68624 67524781 4866.7
++ year          5   1363971 66229435 4866.9
+
+Step:  AIC=4861.69
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement
+
+            Df Sum of Sq      RSS    AIC
++ year       5   2170320 64521430 4858.4
++ fuel_type  2    985702 65706048 4859.7
++ mielage    1    428987 66262763 4861.1
+&lt;none&gt;                   66691749 4861.7
++ LPG        1    125093 66566657 4862.9
++ torque     1     51052 66640697 4863.4
+
+Step:  AIC=4858.39
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year
+
+            Df Sum of Sq      RSS    AIC
++ mielage    1    891212 63630218 4854.8
++ fuel_type  2    825758 63695672 4857.2
+&lt;none&gt;                   64521430 4858.4
++ LPG        1     67472 64453957 4860.0
++ torque     1     26134 64495296 4860.2
+
+Step:  AIC=4854.8
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year + mielage
+
+            Df Sum of Sq      RSS    AIC
++ fuel_type  2   2676916 60953302 4841.5
++ torque     1    766140 62864079 4851.9
+&lt;none&gt;                   63630218 4854.8
++ LPG        1    121889 63508329 4856.0
+
+Step:  AIC=4841.52
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year + mielage + fuel_type
+
+         Df Sum of Sq      RSS    AIC
++ torque  1    325691 60627611 4841.4
+&lt;none&gt;                60953302 4841.5
++ LPG     1     97999 60855303 4842.9
+
+Step:  AIC=4841.37
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year + mielage + fuel_type + torque
+
+       Df Sum of Sq      RSS    AIC
+&lt;none&gt;              60627611 4841.4
++ LPG   1    242942 60384669 4841.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_forward)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year + mielage + fuel_type + torque, data = carDF)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1469.24  -181.79    -6.72   185.69  1908.30 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           -2842.9488   429.1527  -6.625 1.20e-10 ***
+hp                        7.8937     1.7436   4.527 8.02e-06 ***
+brand대우               654.8641   134.8188   4.857 1.75e-06 ***
+brand삼성               323.0243   139.0251   2.323 0.020682 *  
+brand쉐보레             103.7930    61.3346   1.692 0.091424 .  
+brand쌍용               660.7410    99.5806   6.635 1.13e-10 ***
+brand현대               -61.8634    59.8964  -1.033 0.302339    
+type대형              -1083.0835   197.8637  -5.474 8.04e-08 ***
+type소형               -514.0606    83.3389  -6.168 1.78e-09 ***
+type준중형             -863.4130   116.4882  -7.412 8.22e-13 ***
+type중형               -738.2166   155.6164  -4.744 2.98e-06 ***
+hybrid1                 575.0221   195.8536   2.936 0.003528 ** 
+wt                        1.3522     0.2265   5.970 5.48e-09 ***
+transmission_type자동   258.5859    50.5670   5.114 5.03e-07 ***
+displacement              0.5687     0.1254   4.536 7.69e-06 ***
+year2011                -55.0935   161.5928  -0.341 0.733338    
+year2012                103.6479   156.4352   0.663 0.508015    
+year2013                202.7578   157.8103   1.285 0.199642    
+year2014                205.4090   155.8975   1.318 0.188439    
+year2015                354.7835   153.3931   2.313 0.021264 *  
+mielage                  63.0049    16.6881   3.775 0.000185 ***
+fuel_type가솔린         -33.2115   101.2345  -0.328 0.743044    
+fuel_type디젤          -518.8002   153.7797  -3.374 0.000819 ***
+torque                   11.7696     8.2594   1.425 0.154984    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 400.5 on 378 degrees of freedom
+Multiple R-squared:  0.8666,    Adjusted R-squared:  0.8585 
+F-statistic: 106.8 on 23 and 378 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="후진선택법" class="level3">
+<h3 class="anchored" data-anchor-id="후진선택법">3-2-2 후진선택법</h3>
+<ul>
+<li>최종 선택된 유의한 변수 : brand, type, displacement, wt, transmission_type, mielage, torque / 7개</li>
+<li>Adjusted R-squared: 0.8368</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>model_backward <span class="ot">&lt;-</span> <span class="fu">lm</span>(sell_price <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> carDF)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>model_backward <span class="ot">&lt;-</span> <span class="fu">step</span>(model, <span class="at">scope=</span><span class="fu">list</span>(<span class="at">lower=</span>model_backward, <span class="at">upper=</span>model), <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=4841.76
+sell_price ~ brand + year + type + mielage + hp + torque + fuel_type + 
+    LPG + hybrid + displacement + wt + transmission_type
+
+                    Df Sum of Sq      RSS    AIC
+- LPG                1    242942 60627611 4841.4
+&lt;none&gt;                           60384669 4841.8
+- torque             1    470634 60855303 4842.9
+- hybrid             1   1283155 61667824 4848.2
+- fuel_type          2   2347102 62731771 4853.1
+- mielage            1   2449027 62833696 4855.7
+- year               5   3757905 64142574 4856.0
+- hp                 1   2706338 63091007 4857.4
+- displacement       1   3487690 63872359 4862.3
+- transmission_type  1   4296136 64680805 4867.4
+- wt                 1   5406727 65791396 4874.2
+- type               4  10187209 70571878 4896.4
+- brand              5  14301236 74685904 4917.2
+
+Step:  AIC=4841.37
+sell_price ~ brand + year + type + mielage + hp + torque + fuel_type + 
+    hybrid + displacement + wt + transmission_type
+
+                    Df Sum of Sq      RSS    AIC
+&lt;none&gt;                           60627611 4841.4
+- torque             1    325691 60953302 4841.5
+- hybrid             1   1382563 62010174 4848.4
+- fuel_type          2   2236467 62864079 4851.9
+- mielage            1   2286205 62913816 4854.3
+- year               5   3614734 64242345 4854.7
+- hp                 1   3287408 63915020 4860.6
+- displacement       1   3300763 63928374 4860.7
+- transmission_type  1   4194245 64821857 4866.3
+- wt                 1   5715774 66343386 4875.6
+- type               4  10785263 71412875 4899.2
+- brand              5  14391451 75019063 4917.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_backward)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = sell_price ~ brand + year + type + mielage + hp + 
+    torque + fuel_type + hybrid + displacement + wt + transmission_type, 
+    data = carDF)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1469.24  -181.79    -6.72   185.69  1908.30 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           -2842.9488   429.1527  -6.625 1.20e-10 ***
+brand대우               654.8641   134.8188   4.857 1.75e-06 ***
+brand삼성               323.0243   139.0251   2.323 0.020682 *  
+brand쉐보레             103.7930    61.3346   1.692 0.091424 .  
+brand쌍용               660.7410    99.5806   6.635 1.13e-10 ***
+brand현대               -61.8634    59.8964  -1.033 0.302339    
+year2011                -55.0935   161.5928  -0.341 0.733338    
+year2012                103.6479   156.4352   0.663 0.508015    
+year2013                202.7578   157.8103   1.285 0.199642    
+year2014                205.4090   155.8975   1.318 0.188439    
+year2015                354.7835   153.3931   2.313 0.021264 *  
+type대형              -1083.0835   197.8637  -5.474 8.04e-08 ***
+type소형               -514.0606    83.3389  -6.168 1.78e-09 ***
+type준중형             -863.4130   116.4882  -7.412 8.22e-13 ***
+type중형               -738.2166   155.6164  -4.744 2.98e-06 ***
+mielage                  63.0049    16.6881   3.775 0.000185 ***
+hp                        7.8937     1.7436   4.527 8.02e-06 ***
+torque                   11.7696     8.2594   1.425 0.154984    
+fuel_type가솔린         -33.2115   101.2345  -0.328 0.743044    
+fuel_type디젤          -518.8002   153.7797  -3.374 0.000819 ***
+hybrid1                 575.0221   195.8536   2.936 0.003528 ** 
+displacement              0.5687     0.1254   4.536 7.69e-06 ***
+wt                        1.3522     0.2265   5.970 5.48e-09 ***
+transmission_type자동   258.5859    50.5670   5.114 5.03e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 400.5 on 378 degrees of freedom
+Multiple R-squared:  0.8666,    Adjusted R-squared:  0.8585 
+F-statistic: 106.8 on 23 and 378 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="단계선택법" class="level3">
+<h3 class="anchored" data-anchor-id="단계선택법">3-2-3 단계선택법</h3>
+<ul>
+<li>최종 선택된 유의한 변수 : brand, type, displacement, wt, transmission_type, mielage, torque / 7개</li>
+<li>Adjusted R-squared: 0.8368</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>model_both <span class="ot">&lt;-</span> <span class="fu">lm</span>(sell_price <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> carDF)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>model_both <span class="ot">&lt;-</span> <span class="fu">step</span>(model_both, <span class="at">scope=</span><span class="fu">list</span>(<span class="at">lower=</span>model_both, <span class="at">upper=</span>model), <span class="at">direction =</span> <span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=5605.17
+sell_price ~ 1
+
+                    Df Sum of Sq       RSS    AIC
++ hp                 1 334261102 120226172 5072.6
++ displacement       1 279740137 174747138 5222.9
++ wt                 1 252937625 201549649 5280.3
++ torque             1 230299241 224188033 5323.1
++ type               4 228333215 226154060 5332.6
++ mielage            1  94876400 359610874 5513.0
++ year               5  79834476 374652798 5537.5
++ transmission_type  1  61792511 392694764 5548.4
++ brand              5  59443859 395043415 5558.8
++ fuel_type          2  40812206 413675068 5571.3
++ LPG                1  14373869 440113405 5594.2
++ hybrid             1  10490542 443996733 5597.8
+&lt;none&gt;                           454487274 5605.2
+
+Step:  AIC=5072.59
+sell_price ~ hp
+
+                    Df Sum of Sq       RSS    AIC
++ brand              5  22754010  97472163 4998.2
++ type               4  16100024 104126148 5022.8
++ wt                 1   8924061 111302111 5043.6
++ hybrid             1   7305947 112920226 5049.4
++ transmission_type  1   5372950 114853223 5056.2
++ displacement       1   2057952 118168220 5067.6
++ torque             1   1536034 118690138 5069.4
++ year               5   3486344 116739829 5070.8
++ mielage            1    607410 119618762 5072.6
+&lt;none&gt;                           120226172 5072.6
++ LPG                1    403914 119822258 5073.2
++ fuel_type          2    621898 119604274 5074.5
+- hp                 1 334261102 454487274 5605.2
+
+Step:  AIC=4998.25
+sell_price ~ hp + brand
+
+                    Df Sum of Sq       RSS    AIC
++ type               4  14585843  82886320 4941.1
++ hybrid             1   7001216  90470947 4970.3
++ transmission_type  1   4866368  92605795 4979.7
++ wt                 1   4544764  92927398 4981.1
++ displacement       1   1287211  96184951 4994.9
++ torque             1    620924  96851239 4997.7
+&lt;none&gt;                            97472163 4998.2
++ LPG                1     36198  97435964 5000.1
++ mielage            1     10937  97461225 5000.2
++ year               5   1661452  95810711 5001.3
++ fuel_type          2     32827  97439336 5002.1
+- brand              5  22754010 120226172 5072.6
+- hp                 1 297571253 395043415 5558.8
+
+Step:  AIC=4941.08
+sell_price ~ hp + brand + type
+
+                    Df Sum of Sq       RSS    AIC
++ hybrid             1   6617364  76268955 4909.6
++ transmission_type  1   4623254  78263066 4920.0
++ wt                 1   4499681  78386639 4920.6
+&lt;none&gt;                            82886320 4941.1
++ displacement       1    359336  82526984 4941.3
++ torque             1    323190  82563130 4941.5
++ mielage            1    188171  82698149 4942.2
++ year               5   1654049  81232270 4943.0
++ LPG                1      6593  82879726 4943.1
++ fuel_type          2     33904  82852416 4944.9
+- type               4  14585843  97472163 4998.2
+- brand              5  21239828 104126148 5022.8
+- hp                 1 128648365 211534685 5315.7
+
+Step:  AIC=4909.64
+sell_price ~ hp + brand + type + hybrid
+
+                    Df Sum of Sq       RSS    AIC
++ wt                 1   5704931  70564024 4880.4
++ transmission_type  1   3358090  72910865 4893.5
++ torque             1   1102918  75166037 4905.8
++ displacement       1    414770  75854185 4909.4
+&lt;none&gt;                            76268955 4909.6
++ year               5   1826932  74442023 4909.9
++ mielage            1    113184  76155771 4911.0
++ LPG                1       292  76268664 4911.6
++ fuel_type          2    305178  75963778 4912.0
+- hybrid             1   6617364  82886320 4941.1
+- type               4  14201992  90470947 4970.3
+- brand              5  21939432  98208388 5001.3
+- hp                 1 133266704 209535659 5313.9
+
+Step:  AIC=4880.38
+sell_price ~ hp + brand + type + hybrid + wt
+
+                    Df Sum of Sq       RSS    AIC
++ transmission_type  1   2970618  67593406 4865.1
++ fuel_type          2   1559150  69004874 4875.4
++ displacement       1    563421  70000603 4879.2
++ torque             1    369885  70194139 4880.3
+&lt;none&gt;                            70564024 4880.4
++ year               5   1680248  68883776 4880.7
++ LPG                1    109246  70454778 4881.8
++ mielage            1      2591  70561434 4882.4
+- wt                 1   5704931  76268955 4909.6
+- hybrid             1   7822615  78386639 4920.6
+- type               4  16128254  86692278 4955.1
+- brand              5  18082368  88646392 4962.1
+- hp                 1 110165685 180729709 5256.5
+
+Step:  AIC=4865.09
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type
+
+                    Df Sum of Sq       RSS    AIC
++ displacement       1    901656  66691749 4861.7
++ fuel_type          2   1014962  66578444 4863.0
+&lt;none&gt;                            67593406 4865.1
++ torque             1    232022  67361384 4865.7
++ mielage            1    159226  67434180 4866.1
++ LPG                1     68624  67524781 4866.7
++ year               5   1363971  66229435 4866.9
+- transmission_type  1   2970618  70564024 4880.4
+- wt                 1   5317459  72910865 4893.5
+- hybrid             1   6460705  74054111 4899.8
+- type               4  14834541  82427947 4936.9
+- brand              5  16913946  84507352 4944.9
+- hp                 1  93418415 161011821 5212.0
+
+Step:  AIC=4861.69
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement
+
+                    Df Sum of Sq       RSS    AIC
++ year               5   2170320  64521430 4858.4
++ fuel_type          2    985702  65706048 4859.7
++ mielage            1    428987  66262763 4861.1
+&lt;none&gt;                            66691749 4861.7
++ LPG                1    125093  66566657 4862.9
++ torque             1     51052  66640697 4863.4
+- displacement       1    901656  67593406 4865.1
+- transmission_type  1   3308854  70000603 4879.2
+- wt                 1   5482751  72174501 4891.5
+- hybrid             1   6492006  73183755 4897.0
+- type               4  15724776  82416525 4938.8
+- brand              5  17468256  84160006 4945.2
+- hp                 1  35576438 102268187 5031.6
+
+Step:  AIC=4858.39
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year
+
+                    Df Sum of Sq      RSS    AIC
++ mielage            1    891212 63630218 4854.8
++ fuel_type          2    825758 63695672 4857.2
+&lt;none&gt;                           64521430 4858.4
++ LPG                1     67472 64453957 4860.0
++ torque             1     26134 64495296 4860.2
+- year               5   2170320 66691749 4861.7
+- displacement       1   1708005 66229435 4866.9
+- transmission_type  1   3074950 67596380 4875.1
+- wt                 1   5397930 69919359 4888.7
+- hybrid             1   6792468 71313898 4896.6
+- brand              5  15204988 79726418 4933.5
+- type               4  15649697 80171127 4937.7
+- hp                 1  25481507 90002937 4990.2
+
+Step:  AIC=4854.8
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year + mielage
+
+                    Df Sum of Sq      RSS    AIC
++ fuel_type          2   2676916 60953302 4841.5
++ torque             1    766140 62864079 4851.9
+&lt;none&gt;                           63630218 4854.8
++ LPG                1    121889 63508329 4856.0
+- mielage            1    891212 64521430 4858.4
+- year               5   2632544 66262763 4861.1
+- displacement       1   2310692 65940910 4867.1
+- transmission_type  1   3831591 67461809 4876.3
+- hybrid             1   4431525 68061743 4879.9
+- wt                 1   5846591 69476809 4888.1
+- type               4  14823113 78453331 4931.0
+- brand              5  15573317 79203535 4932.8
+- hp                 1  21558712 85188930 4970.1
+
+Step:  AIC=4841.52
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year + mielage + fuel_type
+
+                    Df Sum of Sq      RSS    AIC
++ torque             1    325691 60627611 4841.4
+&lt;none&gt;                           60953302 4841.5
++ LPG                1     97999 60855303 4842.9
+- hybrid             1   1261745 62215047 4847.8
+- year               5   3624921 64578224 4854.7
+- fuel_type          2   2676916 63630218 4854.8
+- mielage            1   2742369 63695672 4857.2
+- displacement       1   2977983 63931285 4858.7
+- transmission_type  1   4379871 65333174 4867.4
+- wt                 1   8025435 68978738 4889.2
+- type               4  11259685 72212988 4901.7
+- hp                 1  11693364 72646666 4910.1
+- brand              5  14712365 75665667 4918.4
+
+Step:  AIC=4841.37
+sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year + mielage + fuel_type + torque
+
+                    Df Sum of Sq      RSS    AIC
+&lt;none&gt;                           60627611 4841.4
+- torque             1    325691 60953302 4841.5
++ LPG                1    242942 60384669 4841.8
+- hybrid             1   1382563 62010174 4848.4
+- fuel_type          2   2236467 62864079 4851.9
+- mielage            1   2286205 62913816 4854.3
+- year               5   3614734 64242345 4854.7
+- hp                 1   3287408 63915020 4860.6
+- displacement       1   3300763 63928374 4860.7
+- transmission_type  1   4194245 64821857 4866.3
+- wt                 1   5715774 66343386 4875.6
+- type               4  10785263 71412875 4899.2
+- brand              5  14391451 75019063 4917.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_both)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = sell_price ~ hp + brand + type + hybrid + wt + transmission_type + 
+    displacement + year + mielage + fuel_type + torque, data = carDF)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1469.24  -181.79    -6.72   185.69  1908.30 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           -2842.9488   429.1527  -6.625 1.20e-10 ***
+hp                        7.8937     1.7436   4.527 8.02e-06 ***
+brand대우               654.8641   134.8188   4.857 1.75e-06 ***
+brand삼성               323.0243   139.0251   2.323 0.020682 *  
+brand쉐보레             103.7930    61.3346   1.692 0.091424 .  
+brand쌍용               660.7410    99.5806   6.635 1.13e-10 ***
+brand현대               -61.8634    59.8964  -1.033 0.302339    
+type대형              -1083.0835   197.8637  -5.474 8.04e-08 ***
+type소형               -514.0606    83.3389  -6.168 1.78e-09 ***
+type준중형             -863.4130   116.4882  -7.412 8.22e-13 ***
+type중형               -738.2166   155.6164  -4.744 2.98e-06 ***
+hybrid1                 575.0221   195.8536   2.936 0.003528 ** 
+wt                        1.3522     0.2265   5.970 5.48e-09 ***
+transmission_type자동   258.5859    50.5670   5.114 5.03e-07 ***
+displacement              0.5687     0.1254   4.536 7.69e-06 ***
+year2011                -55.0935   161.5928  -0.341 0.733338    
+year2012                103.6479   156.4352   0.663 0.508015    
+year2013                202.7578   157.8103   1.285 0.199642    
+year2014                205.4090   155.8975   1.318 0.188439    
+year2015                354.7835   153.3931   2.313 0.021264 *  
+mielage                  63.0049    16.6881   3.775 0.000185 ***
+fuel_type가솔린         -33.2115   101.2345  -0.328 0.743044    
+fuel_type디젤          -518.8002   153.7797  -3.374 0.000819 ***
+torque                   11.7696     8.2594   1.425 0.154984    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 400.5 on 378 degrees of freedom
+Multiple R-squared:  0.8666,    Adjusted R-squared:  0.8585 
+F-statistic: 106.8 on 23 and 378 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="결론" class="level3">
+<h3 class="anchored" data-anchor-id="결론">3-2-4 결론</h3>
+<ul>
+<li>3가지의 변수선택법 모두 7개의 변수가 유의하다고 나오므로 7개의 변수를 독립변수로써 사용.</li>
+<li>하지만 7개라는 많은 변수는 자칫 모형이 복잡해질수도 있고, 과적합의 문제가 발생할 수도 있다.</li>
+</ul>
+</section>
+</section>
+<section id="다중공선성-진단." class="level2">
+<h2 class="anchored" data-anchor-id="다중공선성-진단.">3-3 다중공선성 진단.</h2>
+<ul>
+<li>일반적으로 회귀분석에서는 독립변수(설명변수)들이 모두 독립이라고 가정한다. 그래야 알아보고자 하는 변수의 영향력만을 오롯이 알 수 있기 때문이다.</li>
+<li>만약 두 독립변수가 서로에게 영향을 주고 있다면? 회귀모델의 설명력이 낮아진다.</li>
+</ul>
+<section id="산점도-그래프" class="level3">
+<h3 class="anchored" data-anchor-id="산점도-그래프">3-3-1 산점도 그래프</h3>
+<ul>
+<li>잘 보이진 않지만 wt ~ torque, displacement ~ torque 등 상관관계가 높아보이는 변수들이 보인다.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="sc">~</span> brand <span class="sc">+</span> type <span class="sc">+</span> displacement <span class="sc">+</span> wt <span class="sc">+</span> transmission_type <span class="sc">+</span> mielage <span class="sc">+</span> torque, <span class="at">data =</span> carDF, <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">bg =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="vif분산팽창요인을-사용하여-다중공선성-계산" class="level3">
+<h3 class="anchored" data-anchor-id="vif분산팽창요인을-사용하여-다중공선성-계산">3-3-2 vif(분산팽창요인)을 사용하여 다중공선성 계산</h3>
+<ul>
+<li>가장 높은 값을 가지는 <span style="background-color: #fff5b1">wt(중량)을 제거</span>한 후 회귀모형을 다시 만들어 주었다.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sell_price <span class="sc">~</span> brand <span class="sc">+</span> type <span class="sc">+</span> displacement <span class="sc">+</span> wt <span class="sc">+</span> transmission_type <span class="sc">+</span> mielage <span class="sc">+</span> torque, <span class="at">data =</span> carDF)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       GVIF Df GVIF^(1/(2*Df))
+brand              2.045807  5        1.074203
+type              19.049075  4        1.445387
+displacement       5.815123  1        2.411457
+wt                18.276223  1        4.275070
+transmission_type  1.167902  1        1.080695
+mielage            2.875318  1        1.695676
+torque             6.590290  1        2.567156</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sell_price <span class="sc">~</span> brand <span class="sc">+</span> type <span class="sc">+</span> displacement <span class="sc">+</span> transmission_type <span class="sc">+</span> mielage <span class="sc">+</span> torque, <span class="at">data =</span> carDF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="회귀모형-진단" class="level2">
+<h2 class="anchored" data-anchor-id="회귀모형-진단">3-3 회귀모형 진단</h2>
+<ul>
+<li>선형성, 정규성은 만족, 등분산성에서 아쉬운 모습을 보여주지만, 그래도 괜찮은 회귀모형이 만들어졌다.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="Jaewon_car_price_files/figure-html/unnamed-chunk-14-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="회귀모형을-사용한-예측" class="level1">
+<h1>4. 회귀모형을 사용한 예측</h1>
+<section id="상한과-하한을-설정하여-구간안에-들어오면-예측성공한-것으로-판단.전체-데이터-사용" class="level2">
+<h2 class="anchored" data-anchor-id="상한과-하한을-설정하여-구간안에-들어오면-예측성공한-것으로-판단.전체-데이터-사용">4-1 상한과 하한을 설정하여 구간안에 들어오면 예측성공한 것으로 판단.(전체 데이터 사용)</h2>
+<ul>
+<li>pre라는 데이터프레임 생성, fit값과 상한, 하한값을 저장, 실제 자동차의 sell_price가 예측범위 안에 들어온다면 TRUE로 판단.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sell_price <span class="sc">~</span> brand <span class="sc">+</span> type <span class="sc">+</span> displacement <span class="sc">+</span> transmission_type <span class="sc">+</span> mielage <span class="sc">+</span> torque, <span class="at">data =</span> carDF)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">test_modedl =</span> carDF, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in predict.lm(model, test_modedl = carDF, interval = "prediction"): predictions on current data refer to _future_ responses</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pre)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pre, carDF<span class="sc">$</span>sell_price)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>Success <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pre, Success)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>pre<span class="sc">$</span>Success[pre<span class="sc">$</span><span class="st">'carDF$sell_price'</span> <span class="sc">&gt;=</span> pre<span class="sc">$</span>lwr <span class="sc">&amp;</span> pre<span class="sc">$</span><span class="st">'carDF$sell_price'</span> <span class="sc">&lt;=</span> pre<span class="sc">$</span>upr] <span class="ot">&lt;-</span> T</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>pre<span class="sc">$</span>Success[<span class="fu">is.na</span>(pre<span class="sc">$</span>Success)] <span class="ot">&lt;-</span> F</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        fit      lwr      upr carDF$sell_price Success
+6  4633.287 3593.528 5673.045             5680   FALSE
+7  4668.985 3630.317 5707.653             6910   FALSE
+8  4676.570 3637.872 5715.269             5463    TRUE
+9  4662.375 3623.805 5700.945             5710   FALSE
+11 5099.584 4045.144 6154.024             6565   FALSE
+12 5113.779 4059.521 6168.037             6095    TRUE</code></pre>
+</div>
+</div>
+<section id="성공한-비율을-계산하여-회귀모형의-예측률을-계산" class="level3">
+<h3 class="anchored" data-anchor-id="성공한-비율을-계산하여-회귀모형의-예측률을-계산">4-1-1 성공한 비율을 계산하여 회귀모형의 예측률을 계산</h3>
+<ul>
+<li>RMSE값(평균 제곱근 오차, 잔차 측정의 척도): <span style="background-color: #fff5b1">507.9306</span></li>
+<li>예측 성공률: 약 <span style="background-color: #fff5b1">93%</span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">sapply</span>(carDF[, <span class="dv">1</span>] <span class="sc">-</span> <span class="fu">predict</span>(model, carDF[, <span class="sc">-</span><span class="dv">1</span>]), <span class="at">FUN =</span> <span class="cf">function</span>(x) {x<span class="sc">^</span><span class="dv">2</span>})) <span class="sc">/</span> <span class="fu">dim</span>(carDF)[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 504.6225</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(pre<span class="sc">$</span>Success<span class="sc">==</span><span class="st">"TRUE"</span>)<span class="sc">/</span><span class="fu">dim</span>(pre)[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9378109</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="상한과-하한을-설정하여-구간안에-들어오면-예측성공한-것으로-판단.train---test-데이터-분할" class="level2">
+<h2 class="anchored" data-anchor-id="상한과-하한을-설정하여-구간안에-들어오면-예측성공한-것으로-판단.train---test-데이터-분할">4-2 상한과 하한을 설정하여 구간안에 들어오면 예측성공한 것으로 판단.(train - test 데이터 분할)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>test_index<span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(carDF)[<span class="dv">1</span>], <span class="fu">as.integer</span>(<span class="fu">dim</span>(carDF)[<span class="dv">1</span>]<span class="sc">*</span><span class="fl">0.2</span>) , <span class="at">replace =</span> F)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> carDF[<span class="sc">-</span>test_index,]</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> carDF[test_index,]</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sell_price <span class="sc">~</span> brand <span class="sc">+</span> type <span class="sc">+</span> displacement <span class="sc">+</span> transmission_type <span class="sc">+</span> mielage <span class="sc">+</span> torque, <span class="at">data =</span> train_df)</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, test_df[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pre)</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pre, test_df<span class="sc">$</span>sell_price)</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>Success <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>pre <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pre, Success)</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>pre<span class="sc">$</span>Success[pre<span class="sc">$</span><span class="st">'test_df$sell_price'</span> <span class="sc">&gt;=</span> pre<span class="sc">$</span>lwr <span class="sc">&amp;</span> pre<span class="sc">$</span><span class="st">'test_df$sell_price'</span> <span class="sc">&lt;=</span> pre<span class="sc">$</span>upr] <span class="ot">&lt;-</span> T</span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>pre<span class="sc">$</span>Success[<span class="fu">is.na</span>(pre<span class="sc">$</span>Success)] <span class="ot">&lt;-</span> F</span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         fit       lwr      upr test_df$sell_price Success
+331 1274.167  272.1275 2276.207               1940    TRUE
+174 2458.088 1459.3586 3456.817               2283    TRUE
+136 2228.679 1227.8482 3229.510               1885    TRUE
+306 1333.718  332.7501 2334.686               1104    TRUE
+277 1689.811  681.1268 2698.496               1445    TRUE
+194 2895.936 1880.7366 3911.135               3464    TRUE</code></pre>
+</div>
+</div>
+<section id="성공한-비율을-계산하여-회귀모형의-예측률을-계산-1" class="level3">
+<h3 class="anchored" data-anchor-id="성공한-비율을-계산하여-회귀모형의-예측률을-계산-1">4-2-1 성공한 비율을 계산하여 회귀모형의 예측률을 계산</h3>
+<ul>
+<li>RMSE값(평균 제곱근 오차): <span style="background-color: #fff5b1">603.4126</span></li>
+<li>예측 성공률: 약 <span style="background-color: #fff5b1">96%</span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">sapply</span>(test_df[, <span class="dv">1</span>] <span class="sc">-</span> <span class="fu">predict</span>(model, test_df[, <span class="sc">-</span><span class="dv">1</span>]), <span class="at">FUN =</span> <span class="cf">function</span>(x) {x<span class="sc">^</span><span class="dv">2</span>})) <span class="sc">/</span> <span class="fu">dim</span>(test_df)[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 603.4126</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(pre<span class="sc">$</span>Success<span class="sc">==</span><span class="st">"TRUE"</span>)<span class="sc">/</span><span class="fu">dim</span>(pre)[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8875</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="아쉬웠던-점" class="level1">
+<h1>5. 아쉬웠던 점</h1>
+<ul>
+<li>내 임의로 변수들을 제거하지 말고, 여러개의 회귀모형을 만들어서 비교하였다면 더 적합한 모형을 찾을 수 있었을 것 같다.</li>
+<li>회귀모형을 사용한 예측의 과정에서 예측 성공률을 높게 나왔지만, 이는 예측의 범위가 너무 넓기 때문이라고 생각한다. RMSE값의 경우도 회귀모형끼리의 비교에 적합하기 때문에, 회귀모형 신뢰성 판단에 쓸 수 있는 다른 지표들의 보완이 필요할 것 같다.</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
