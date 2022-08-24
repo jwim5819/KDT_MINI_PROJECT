@@ -1,4 +1,4 @@
-# Project Result
+# Result
 ## 1)
 ## 2)
 ## 3)
