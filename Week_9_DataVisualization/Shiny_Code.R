@@ -55,8 +55,6 @@ write.csv(platformsDF,file="./Kdrama_data/platforms_edit.csv")
 write.csv(word_data_top20,file="./Kdrama_data/platforms_edit_top20.csv")
 write.csv(imdbDF_word,file="./Kdrama_data/imdbDF_word.csv")
 
-
-
 # TOP20 OTT 플랫폼 원형 바 그래프==============================================
 word_data_top20$rno <- c(1:20)
 word_data_top20$order <- c(20:1)
@@ -135,8 +133,7 @@ imdbDF_word
 
 pal <- brewer.pal(n = 8, name = 'Set2')
 
-
-wordcloud2(imdbDF_word, figPath = "etc\\TV.png", size = 0.7, 
+wordcloud2(imdbDF_word, figPath = "etc/TV.png", size = 0.7, 
            backgroundColor="white", fontFamily = "mono",
            color = pal)
 
@@ -167,19 +164,18 @@ server <- function(input, output, session){
   output$pic_1 <- renderImage(deleteFile = F,{
     width  <- session$clientData$output_pic_1_width
     height <- session$clientData$output_pic_1_height
-    list(src = "etc\\WordCloud.png",
-         width = width-200,
-         height = width * 0.75-200)
+    list(src = "etc/WordCloud.png",
+         width = 1200,
+         height = 900)
   })
   
   output$pic_2 <- renderImage(deleteFile = F,{
     width  <- session$clientData$output_pic_1_width
     height <- session$clientData$output_pic_1_height
-    list(src = "etc\\CircleBarPlot.png",
+    list(src = "etc/CircleBarPlot.png",
          width = 600,
          height = 600)
   })
-
 
   output$click <- renderUI({
     d <- event_data("plotly_click", source = 'Plot1')
@@ -229,6 +225,14 @@ server <- function(input, output, session){
 }
 
 ui <- fluidPage(
+  tags$head(
+    tags$style(HTML("
+      #pic_2 img {
+        max-width: 100%; 
+        height: auto; 
+      }
+    "))
+  ),
   titlePanel(
     h1(HTML('<span style=" font: italic bold 1em Comic Sans MS, serif ;">',
        '&nbsp&nbspK-Drama Data Visualization',
