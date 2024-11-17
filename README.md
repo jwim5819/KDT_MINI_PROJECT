@@ -7,7 +7,7 @@
 ## 목차
 
 1. Python
-   - 초성 게임 ([링크](https://github.com/jwim5819/KDT_MINI_PROJECT/tree/main/Week_1_ChosungQuiz))
+   - 초성 게임 ([링크](https://github.com/jwim5819/KDT_MINI_PROJECT/tree/main/Week_1_ChosungQuiz/Chosung-game))
 2. Pandas
    - 실업율 분석 ([링크](https://github.com/jwim5819/KDT_MINI_PROJECT/blob/main/Week_2_PandasProject/%EC%8B%A4%EC%97%85%EC%9C%A8_%EC%9E%84%EC%9E%AC%EC%9B%90.ipynb))
 3. Public Data

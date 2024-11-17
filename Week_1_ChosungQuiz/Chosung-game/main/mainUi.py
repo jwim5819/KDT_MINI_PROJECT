@@ -1,3 +1,10 @@
+# for mac
+import matplotlib
+matplotlib.use("TkAgg")
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+
 import time
 import tkinter
 import tkinter.font
@@ -38,6 +45,7 @@ if len(os.listdir(DIR_WORD_PATH))!=191:
 class chosungApp(Tk):
     def __init__(w):
         super().__init__()
+
         w.title('아름다운 우리말 초성게임')
         w.geometry('500x500')
         w.working_frame = ttk.Frame(w)
@@ -54,9 +62,9 @@ class chosungApp(Tk):
         main_label = tkinter.Label(w.working_frame, image=main)
         main_label.place(x=0, y=0)
         # 랭킹보기 클릭하면 rank.xlxs 파일을 txt로 변환 후 읽어서 listbox에 표시한다.
-        ttk.Button(w.working_frame, text='랭킹보기', width=17, command=w.window2).place(x=50, y=450)
-        ttk.Button(w.working_frame, text='퀴즈풀기', width=17, command=w.window3).place(x=185, y=450)
-        ttk.Button(w.working_frame, text='종료', width=17, command=w.destroy).place(x=320, y=450)
+        ttk.Button(w.working_frame, text='랭킹보기', width=7, command=w.window2).place(x=65, y=450)
+        ttk.Button(w.working_frame, text='퀴즈풀기', width=7, command=w.window3).place(x=200, y=450)
+        ttk.Button(w.working_frame, text='종료', width=7, command=w.destroy).place(x=335, y=450)
         w.working_frame.pack(side='top', pady=(0, 0))
         w.mainloop()
 
@@ -66,9 +74,9 @@ class chosungApp(Tk):
         w.working_frame.pack_propagate(False)
         font = tkinter.font.Font(size=30, weight='bold')
         ttk.Label(w.working_frame, text='랭 킹 현 황', font=font).place(x=148, y=32)
-        ttk.Button(w.working_frame, text='퀴즈풀기', command=w.window3, width=17).place(x=50, y=450)
-        ttk.Button(w.working_frame, text='초기화면', command=w.window1, width=17).place(x=185, y=450)
-        ttk.Button(w.working_frame, text='종료', width=17, command=w.destroy).place(x=320, y=450)
+        ttk.Button(w.working_frame, text='퀴즈풀기', command=w.window3, width=7).place(x=50, y=450)
+        ttk.Button(w.working_frame, text='초기화면', command=w.window1, width=7).place(x=185, y=450)
+        ttk.Button(w.working_frame, text='종료', width=7, command=w.destroy).place(x=320, y=450)
         font = tkinter.font.Font(size=16, weight='bold')
         # rnak엑셀파일 열어서 txt 저장
         data = pandas.read_excel("./rank.xlsx")
@@ -136,10 +144,10 @@ class chosungApp(Tk):
             chosung = mainfunc.givechosung()
             chosung1 = chosung[:1]
             chosung2 = chosung[1:2]
-            chosung1 = Label(w.working_frame, text=chosung1, font=tkinter.font.Font(size=59, weight='bold'), height=1, width=2, anchor='center', relief='ridge', borderwidth=5)
-            chosung1.place(x=140, y=130)
-            chosung2 = Label(w.working_frame, text=chosung2, font=tkinter.font.Font(size=59, weight='bold'), height=1, width=2, anchor='center', relief='ridge', borderwidth=5)
-            chosung2.place(x=260, y=130)
+            chosung1 = Label(w.working_frame, text=chosung1, font=tkinter.font.Font(size=40, weight='bold'), height=1, width=2, anchor='center', relief='ridge', borderwidth=5)
+            chosung1.place(x=125, y=130)
+            chosung2 = Label(w.working_frame, text=chosung2, font=tkinter.font.Font(size=40, weight='bold'), height=1, width=2, anchor='center', relief='ridge', borderwidth=5)
+            chosung2.place(x=245, y=130)
         # 정답인풋
 
         def chosung_input2(event):
@@ -176,26 +184,26 @@ class chosungApp(Tk):
             # False 이면 메인메뉴
 
         # 버튼삽입
-        how_btn = Button(w.working_frame, text='게임설명', height=3, width=17, command=w.window4)
+        how_btn = Button(w.working_frame, text='게임설명', height=2, width=7, command=w.window4)
         how_btn.place(x=30, y=400)
         # 게임시작을 누르면 timer 함수가 실행된다.
-        start_btn = Button(w.working_frame, text='게임시작!', height=3, width=17, command=nickname)
+        start_btn = Button(w.working_frame, text='게임시작!', height=2, width=7, command=nickname)
         start_btn.place(x=185, y=400)
-        exit_btn2 = Button(w.working_frame, text='종   료', height=3, width=17, command=w.destroy)
+        exit_btn2 = Button(w.working_frame, text='종   료', height=2, width=7, command=w.destroy)
         exit_btn2.place(x=340, y=400)
         # 초성 표시 부분
-        chosung1 = Label(w.working_frame, height=6, width=12, anchor='center', relief='ridge', borderwidth=5)
-        chosung1.place(x=150, y=130)
-        chosung2 = Label(w.working_frame, height=6, width=12, anchor='center', relief='ridge', borderwidth=5)
-        chosung2.place(x=270, y=130)
+        chosung1 = Label(w.working_frame, height=4, width=8, anchor='center', relief='ridge', borderwidth=5)
+        chosung1.place(x=125, y=130)
+        chosung2 = Label(w.working_frame, height=4, width=8, anchor='center', relief='ridge', borderwidth=5)
+        chosung2.place(x=245, y=130)
         # 남은 단어 시각화
         curr_progress = tkinter.DoubleVar()
         progress_bar = tkinter.ttk.Progressbar(w.working_frame, length=300, maximum=5, variable=curr_progress)
-        progress_bar.place(x=107, y=255)
+        progress_bar.place(x=87, y=255)
         # 정답 입력 부분
         font = tkinter.font.Font(size=40)
         chosung_input = Entry(w.working_frame, font=font, width=10, justify='center')
-        chosung_input.place(x=105, y=300)
+        chosung_input.place(x=70, y=300)
 
 
         chosung_input.bind("<Return>", chosung_input2)
