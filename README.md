@@ -23,7 +23,7 @@
    <img src="screenshot/5_r_programing.png" alt="Web Scraping 중고나라 스크래핑" width="500px" />
 6. Tableau
    - 수도권 인구집중 분석 ([링크](https://public.tableau.com/app/profile/.40333734/viz/_16616976208270/1_1))  
-   <img src="screenshot/6_tableau.png" alt="Web Scraping 중고나라 스크래핑" width="500px" />
+   <img src="screenshot/6_tableau.jpg" alt="Web Scraping 중고나라 스크래핑" width="500px" />
 7. Machine Learning
    - 스팸문자 분류 ([링크](https://github.com/jwim5819/KDT_MINI_PROJECT/blob/main/Week_11_MachineLearning/3%EC%A1%B0_%EC%9E%84%EC%9E%AC%EC%9B%90_%EC%8A%A4%ED%8C%B8%EB%AC%B8%EC%9E%90%EB%B6%84%EB%A5%98.ipynb))  
    <img src="screenshot/7_machine_learning.png" alt="Web Scraping 중고나라 스크래핑" width="500px" />
